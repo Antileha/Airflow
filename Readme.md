@@ -1,20 +1,23 @@
 # Инструкция по запуску Airflow на Docker в VsCode
+1. Скачайте репозиторий
 
-1. Скачайте и установите Docker Desktop с официального 
+2. Разархивируйте файлы в dags/data
+
+3. Скачайте и установите Docker Desktop с официального 
 сайта https://www.docker.com/products/docker-desktop/
 
-2. Установите расширения VS Code:
+4. Установите расширения VS Code:
     - Docker (Microsoft)
     - Dev  Containers
     - Python
     - YAML
 
-3. Создайте рабочую директорию в VS Code:
+5. Создайте рабочую директорию в VS Code:
     - File -> Open Folder
     - Создайте новую папку (например, airflow-project)
     - Выберите эту папку
 
-3. Создайте структуру проекта:  
+6. Создайте структуру проекта:  
     airflow-project/  
     ├── dags/  
     ├── logs/  
@@ -22,7 +25,7 @@
     ├── docker-compose.yaml  
     └── .env  
 
-4. Создайте docker-compose.yaml:
+7. Создайте docker-compose.yaml:
     - Скачайте официальный файл: https://airflow.apache.org/docs/apache-airflow/2.10.3/docker-compose.yaml
     - Или создайте новый файл и скопируйте содержимое
 
@@ -44,12 +47,12 @@
     # Зависимости Python
     ```
 
-5. Создайте .env файл:  
+8. Создайте .env файл:  
     Пропишите в нем:  
     AIRFLOW_UID=50000  
     *устанавливается для решения проблем с правами доступа в контейнерах Docker.*
 
-6. Создать dockerfile:
+9. Создать dockerfile:
 
     ```
     FROM apache/airflow:2.10.3
@@ -70,14 +73,14 @@
     RUN pip install --no-cache-dir --only-binary :all: -r /requirements.txt```
 
 
-7. Соберем образ:
+10. Соберем образ:
     ```docker build -t cv-airflow .```
 
     **Измените AIRFLOW_IMAGE_NAME в docker-compose.yaml на cv-airflow**
 
-8. Создайте тестовый DAG в директории dags/
+11. Создайте тестовый DAG в директории dags/
 
-9. Проверьте работу Airflow:
+12. Проверьте работу Airflow:
     - Откройте браузер и перейдите по адресу http://localhost:8080
     - Логин: airflow
     - Пароль: airflow
@@ -86,7 +89,7 @@
  
 airflow_project/        
 ├── dags/       
-│   └── test_dag.py     
+│   └── hw_chunk_dag.py     
 ├── logs/       
 ├── plugins/        
 ├── docker-compose.yaml     
